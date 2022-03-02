@@ -11,16 +11,13 @@ import CoreBluetooth
 struct BluetoothDiscoveryView: View {
     @State private var connected = false
     @State private var shouldAnimate = false
+    @State private var willMoveToNextScreen = false
     @ObservedObject var bleManager = BLEManager()
     @State var scanningText = "Start Scanning"
     
     var body: some View {
-        NavigationView {
-            
-//            ProgressView("Please wait...")
-//                .progressViewStyle(DarkBlueShadowProgressViewStyle())
-//            .navigationBarHidden(true)
-            VStack {
+        VStack {
+            if bleManager.isConnected == false {
                 Button(action: {
                     self.bleManager.startScanning()
                     scanningText = "Scanning..."
@@ -34,35 +31,37 @@ struct BluetoothDiscoveryView: View {
                     .padding()
                     .disabled(bleManager.isScanning)
                     .buttonStyle(MyButtonStyle())
-                
-                if bleManager.isConnected {
-                    Text("Glove is connnected! Now let's callibrate.")
+            }
+            
+            
+            if bleManager.isConnected {
+                Text("Glove is connnected! Now let's callibrate.")
+                    .fontWeight(.bold)
+                    .padding(20)
+                ZStack {
+                    Circle()
+                        .fill(Color.blue)
+                        .frame(width: 12, height: 12)
+                        .modifier(ParticlesModifier())
+                        .offset(x: -100, y : -50)
+                            
+                    Circle()
+                        .fill(Color.red)
+                        .frame(width: 12, height: 12)
+                        .modifier(ParticlesModifier())
+                        .offset(x: 60, y : 70)
+                }
+                Button(action: {
+                    self.willMoveToNextScreen = true
+                }) {
+                    Text("Start Callibration")
                         .fontWeight(.bold)
                         .padding(20)
-                    ZStack {
-                        Circle()
-                            .fill(Color.blue)
-                            .frame(width: 12, height: 12)
-                            .modifier(ParticlesModifier())
-                            .offset(x: -100, y : -50)
-                                
-                        Circle()
-                            .fill(Color.red)
-                            .frame(width: 12, height: 12)
-                            .modifier(ParticlesModifier())
-                            .offset(x: 60, y : 70)
-                    }
-                    NavigationLink(destination: CalibrationStart()){
-                        Text("Start Callibration")
-                            .fontWeight(.bold)
-                            .padding(20)
-                            .foregroundColor(.white)
-                            .shadow(radius: 5.0)
-                    }
+                        .foregroundColor(.blue)
+                        .shadow(radius: 5.0)
                 }
-            }.padding()
-            
-        }.navigationViewStyle(StackNavigationViewStyle())
+            }
+        }.navigate(to: CalibrationStart(), when: $willMoveToNextScreen).padding()
         
     }
 }
