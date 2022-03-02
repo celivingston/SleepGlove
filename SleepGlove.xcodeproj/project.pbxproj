@@ -14,6 +14,9 @@
 		6743784D27C5B806002D1723 /* SleepGloveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6743784C27C5B806002D1723 /* SleepGloveTests.swift */; };
 		6743785727C5B806002D1723 /* SleepGloveUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6743785627C5B806002D1723 /* SleepGloveUITests.swift */; };
 		6743785927C5B806002D1723 /* SleepGloveUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6743785827C5B806002D1723 /* SleepGloveUITestsLaunchTests.swift */; };
+		6743786627C5EB5D002D1723 /* BluetoothDiscoveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6743786527C5EB5D002D1723 /* BluetoothDiscoveryView.swift */; };
+		6751129827CED73A003BE27F /* BLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6751129727CED73A003BE27F /* BLEManager.swift */; };
+		6751129A27D01039003BE27F /* CalibrationStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6751129927D01038003BE27F /* CalibrationStart.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		6743785227C5B806002D1723 /* SleepGloveUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SleepGloveUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6743785627C5B806002D1723 /* SleepGloveUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepGloveUITests.swift; sourceTree = "<group>"; };
 		6743785827C5B806002D1723 /* SleepGloveUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepGloveUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6743786527C5EB5D002D1723 /* BluetoothDiscoveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothDiscoveryView.swift; sourceTree = "<group>"; };
+		6751129727CED73A003BE27F /* BLEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEManager.swift; sourceTree = "<group>"; };
+		6751129927D01038003BE27F /* CalibrationStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationStart.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,9 +101,12 @@
 			isa = PBXGroup;
 			children = (
 				6743783B27C5B803002D1723 /* SleepGloveApp.swift */,
+				6751129927D01038003BE27F /* CalibrationStart.swift */,
 				6743783D27C5B803002D1723 /* ContentView.swift */,
 				6743783F27C5B805002D1723 /* Assets.xcassets */,
 				6743784127C5B805002D1723 /* Preview Content */,
+				6743786527C5EB5D002D1723 /* BluetoothDiscoveryView.swift */,
+				6751129727CED73A003BE27F /* BLEManager.swift */,
 			);
 			path = SleepGlove;
 			sourceTree = "<group>";
@@ -258,7 +267,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6743783E27C5B803002D1723 /* ContentView.swift in Sources */,
+				6751129827CED73A003BE27F /* BLEManager.swift in Sources */,
+				6743786627C5EB5D002D1723 /* BluetoothDiscoveryView.swift in Sources */,
 				6743783C27C5B803002D1723 /* SleepGloveApp.swift in Sources */,
+				6751129A27D01039003BE27F /* CalibrationStart.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +434,7 @@
 				DEVELOPMENT_TEAM = 83T9QZW73V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Allow BLE Use";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -451,6 +464,7 @@
 				DEVELOPMENT_TEAM = 83T9QZW73V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Allow BLE Use";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
