@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CalibrationStart: View {
+    var bleManager: BLEManager
+    
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
@@ -15,6 +17,6 @@ struct CalibrationStart: View {
 
 struct CalibrationStart_Previews: PreviewProvider {
     static var previews: some View {
-        CalibrationStart()
+        CalibrationStart(bleManager: BLEManager())
     }
 }

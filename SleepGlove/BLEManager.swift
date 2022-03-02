@@ -29,6 +29,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
     @Published var isSwitchedOn = false
     @Published var peripherals = [Peripheral]()
     var myPeripheal:CBPeripheral?
+    var myCharacteristic:CBCharacteristic?
     @Published var isConnected = false
     
     override init() {
@@ -60,14 +61,15 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
         }
     }
     
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+        guard let characteristics = service.characteristics else { return }
+        myCharacteristic = characteristics[0]
+    }
+    
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         //peripheral.discoverServices([serviceUUID])
         print("Connected to " +  peripheral.name!)
         self.isConnected = true
-//        connectButton.isEnabled = false
-//        disconnectButton.isEnabled = true
-//        sendText1Button.isHidden = false
-//        sendText2Button.isHidden = false
     }
     
     func startScanning() {
@@ -75,9 +77,17 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
         self.isScanning = true
         myCentral.scanForPeripherals(withServices: nil, options: nil)
     }
+    
     func stopScanning() {
         print("stopScanning")
         self.isScanning = false
         myCentral.stopScan()
+    }
+    
+    func sendText(text: String) {
+        if (myPeripheal != nil && myCharacteristic != nil) {
+            let data = text.data(using: .utf8)
+            myPeripheal!.writeValue(data!,  for: myCharacteristic!, type: CBCharacteristicWriteType.withResponse)
+        }
     }
 }
