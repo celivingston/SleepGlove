@@ -58,7 +58,7 @@ struct BluetoothDiscoveryView: View {
                         .fontWeight(.bold)
                         .padding(20)
                         .foregroundColor(.blue)
-                        .shadow(radius: 5.0)
+                        //.shadow(radius: 5.0)
                 }
             }
         }.navigate(to: CalibrationStart(bleManager: self.bleManager), when: $willMoveToNextScreen).padding()
