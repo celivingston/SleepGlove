@@ -8,6 +8,14 @@
 import Foundation
 
 
-class SleepRecording: NSObject {
+class SleepRecording: NSObject, ObservableObject {
+    var sleepFocus: String
+    var toSleepRecording: Recording!
+    var toWakeRecording: Recording!
+    var minutesToSleep: Int
     
+    override init() {
+        self.sleepFocus = ""
+        self.minutesToSleep = 0
+    }
 }

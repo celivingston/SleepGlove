@@ -94,7 +94,10 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         peripheral.discoverServices([BLE_CBUUID])
         print("Connected to " +  peripheral.name!)
-        self.isConnected = true
+        DispatchQueue.main.async {
+            self.isConnected = true
+        }
+        
     }
     
     func startScanning() {

@@ -9,6 +9,8 @@ import SwiftUI
 struct StepTwoPrompt: View {
     @State private var time: String = ""
     @State private var willMoveToNextScreen = false
+    @ObservedObject var sleepRecording: SleepRecording
+    
     var body: some View {
         VStack {
             Text("Enter time until sleep.")
@@ -21,25 +23,29 @@ struct StepTwoPrompt: View {
                 .padding([.leading, .trailing])
             TextField("Enter number of minutes", text: $time)
                 .padding()
+                .keyboardType(.numberPad)
             Button(action: {
+                sleepRecording.minutesToSleep = Int(time) ?? 15
                 self.willMoveToNextScreen = true
             }) {
                 Text("Next")
                     .fontWeight(.semibold)
                     .foregroundColor(.white)
+                    .frame(width: 200)
+                    .cornerRadius(30)
+                    .padding()
                     
             }   .padding()
-                .frame(width: 200)
-                .background(Color.blue)
                 .shadow(radius: 5.0)
-                .cornerRadius(30)
-        }.textFieldStyle(.roundedBorder).navigate(to: StepThreePrompt(audioRecorder: AudioRecorder()), when: $willMoveToNextScreen)
+                .disabled(time=="")
+                .buttonStyle(MyButtonStyle())
+        }.textFieldStyle(.roundedBorder).navigate(to: StepThreePrompt(audioRecorder: AudioRecorder(), sleepRecording: sleepRecording), when: $willMoveToNextScreen)
     }
     
 }
 
 struct StepTwoPrompt_Previews: PreviewProvider {
     static var previews: some View {
-        StepTwoPrompt()
+        StepTwoPrompt(sleepRecording: SleepRecording())
     }
 }

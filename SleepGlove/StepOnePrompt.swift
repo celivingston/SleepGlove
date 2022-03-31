@@ -16,7 +16,7 @@ struct StepOnePrompt: View {
     @State private var dreamFocus: String = "Start typing here..."
     @State private var willMoveToNextScreen = false
     @FocusState private var focusedField: Field?
-    
+    @ObservedObject var sleepRecording = SleepRecording()
     init() {
             UITextView.appearance().backgroundColor = .clear
     }
@@ -53,23 +53,23 @@ struct StepOnePrompt: View {
                 }
             Spacer()
             Button(action: {
+                sleepRecording.sleepFocus = self.dreamFocus
                 self.willMoveToNextScreen = true
             }) {
                 Text("Next")
                     .fontWeight(.semibold)
                     .foregroundColor(.white)
+                    .padding()
+                    .frame(width: 200)
+                    .cornerRadius(30)
                     
             }   .padding()
-                .frame(width: 200)
-                .background(Color.blue)
                 .shadow(radius: 5.0)
-                .cornerRadius(30)
+                .disabled(dreamFocus == placeholder || dreamFocus == "")
+                .buttonStyle(MyButtonStyle())
+                
             
-        }.navigate(to: StepTwoPrompt(), when: $willMoveToNextScreen)
-    }
-    
-    private func endEditing() {
-        UIApplication.shared.endEditing()
+        }.navigate(to: StepTwoPrompt(sleepRecording: sleepRecording), when: $willMoveToNextScreen)
     }
 }
 

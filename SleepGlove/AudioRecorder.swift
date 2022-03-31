@@ -15,7 +15,6 @@ class AudioRecorder: ObservableObject {
     let objectWillChange = PassthroughSubject<AudioRecorder, Never>()
     var audioRecorder: AVAudioRecorder!
     var recordings = [Recording]()
-    
     var recording = false {
             didSet {
                 objectWillChange.send(self)
@@ -42,13 +41,21 @@ class AudioRecorder: ObservableObject {
             audioRecorder = try AVAudioRecorder(url: audioFilename, settings: settings)
             audioRecorder.record()
             recording = true
+            recordings.append(Recording(fileURL: audioFilename, createdAt: Date()))
         } catch {
             print("Could not start recording")
         }
     }
-    func stopRecording() {
+    func stopRecording() -> Recording? {
         audioRecorder.stop()
         recording = false
+        if let lastRecording = recordings.last {
+            return lastRecording
+        } else {
+            print("no recording")
+            return nil
+        }
+        
     }
 }
 

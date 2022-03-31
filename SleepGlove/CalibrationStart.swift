@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CalibrationStart: View {
-    var bleManager: BLEManager
+    @ObservedObject var bleManager: BLEManager
     @State private var willMoveToNextScreen = false
     
     var body: some View {

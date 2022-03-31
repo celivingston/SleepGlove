@@ -10,6 +10,8 @@ import SwiftUI
 struct StepThreePrompt: View {
     @ObservedObject var audioRecorder: AudioRecorder
     @State private var hasRecorded = false
+    @ObservedObject var sleepRecording: SleepRecording
+    
     var body: some View {
         VStack {
             Text("Please record a wake up message. ")
@@ -42,8 +44,9 @@ struct StepThreePrompt: View {
                 }.padding([.top, .bottom], 30)
             } else {
                 Button(action: {
-                    self.audioRecorder.stopRecording()
+                    sleepRecording.toWakeRecording =  self.audioRecorder.stopRecording()
                     self.hasRecorded = true
+                    
                 }) {
                     Image(systemName: "stop.fill")
                         .resizable()
@@ -56,10 +59,9 @@ struct StepThreePrompt: View {
                 }.padding([.top, .bottom], 30)
             }
             Spacer()
-            if hasRecorded {
-                Text("If there are issues that occurred during your recording, please re-record by tapping the button again. ")
-                    .font(.system(size: 15, weight: .regular))
-            }
+            Text("If there are issues that occurred during your recording, please re-record by tapping the button again. ")
+                .font(.system(size: 15, weight: .regular))
+                .foregroundColor(hasRecorded ? Color.primary : Color.clear)
             Button(action: {
                 if audioRecorder.recording == true {
                     audioRecorder.stopRecording()
@@ -69,10 +71,10 @@ struct StepThreePrompt: View {
                     .fontWeight(.bold)
                     .padding(20)
                     .foregroundColor(.white)
-                    .shadow(radius: 5.0)
                     .frame(width: 200)
             }
                 .padding()
+                .shadow(radius: 5.0)
                 .disabled(!hasRecorded)
                 .buttonStyle(MyButtonStyle())
         }
@@ -81,6 +83,6 @@ struct StepThreePrompt: View {
 
 struct StepThreePrompt_Previews: PreviewProvider {
     static var previews: some View {
-        StepThreePrompt(audioRecorder: AudioRecorder())
+        StepThreePrompt(audioRecorder: AudioRecorder(), sleepRecording: SleepRecording())
     }
 }

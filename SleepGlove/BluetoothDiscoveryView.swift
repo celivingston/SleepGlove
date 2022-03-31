@@ -61,7 +61,7 @@ struct BluetoothDiscoveryView: View {
                         //.shadow(radius: 5.0)
                 }
             }
-        }.navigate(to: CalibrationStart(bleManager: self.bleManager), when: $willMoveToNextScreen).padding()
+        }.navigate(to: CalibrationStart(bleManager: bleManager), when: $willMoveToNextScreen).padding()
         
     }
 }

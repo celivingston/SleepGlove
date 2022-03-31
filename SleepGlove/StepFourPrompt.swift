@@ -56,10 +56,9 @@ struct StepFourPrompt: View {
                 }.padding([.top, .bottom], 30)
             }
             Spacer()
-            if hasRecorded {
-                Text("If there are issues that occurred during your recording, please re-record by tapping the button again. ")
-                    .font(.system(size: 15, weight: .regular))
-            }
+            Text("If there are issues that occurred during your recording, please re-record by tapping the button again. ")
+                .font(.system(size: 15, weight: .regular))
+                .foregroundColor(hasRecorded ? Color.primary : Color.clear)
             Button(action: {
                 if audioRecorder.recording == true {
                     audioRecorder.stopRecording()
