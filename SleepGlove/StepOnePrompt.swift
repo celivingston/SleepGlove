@@ -36,7 +36,6 @@ struct StepOnePrompt: View {
                 .padding()
                 .background(Color.gray.opacity(0.25))
                 .font(Font.custom("AvenirNext-Regular", size: 15, relativeTo: .body))
-                .foregroundColor(self.dreamFocus == placeholder ? .gray : .black)
                 .frame(width: 300, height: 200, alignment: .center)
                 .cornerRadius(15)
                 .onTapGesture {
@@ -66,7 +65,7 @@ struct StepOnePrompt: View {
                 .shadow(radius: 5.0)
                 .cornerRadius(30)
             
-        }.navigate(to: StepTwoPrompt(), when: $willMoveToNextScreen)
+        }.navigate(to: StepTwoPrompt(audioRecorder: AudioRecorder()), when: $willMoveToNextScreen)
     }
     
     private func endEditing() {
