@@ -65,7 +65,7 @@ struct StepOnePrompt: View {
                 .shadow(radius: 5.0)
                 .cornerRadius(30)
             
-        }.navigate(to: StepTwoPrompt(audioRecorder: AudioRecorder()), when: $willMoveToNextScreen)
+        }.navigate(to: StepTwoPrompt(), when: $willMoveToNextScreen)
     }
     
     private func endEditing() {

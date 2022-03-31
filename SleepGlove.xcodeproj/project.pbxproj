@@ -10,6 +10,8 @@
 		671CD28B27F4FC850005B27D /* StepTwoPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671CD28A27F4FC850005B27D /* StepTwoPrompt.swift */; };
 		671CD28D27F508280005B27D /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671CD28C27F508280005B27D /* AudioRecorder.swift */; };
 		671CD28F27F50DA10005B27D /* RecordingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671CD28E27F50DA10005B27D /* RecordingDataModel.swift */; };
+		671CD29127F555710005B27D /* StepThreePrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671CD29027F555710005B27D /* StepThreePrompt.swift */; };
+		671CD29327F558040005B27D /* StepFourPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671CD29227F558040005B27D /* StepFourPrompt.swift */; };
 		673A05BF27F39BBA00C41612 /* StepOnePrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673A05BE27F39BBA00C41612 /* StepOnePrompt.swift */; };
 		673A05C127F39D4E00C41612 /* SleepRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673A05C027F39D4E00C41612 /* SleepRecording.swift */; };
 		6743783C27C5B803002D1723 /* SleepGloveApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6743783B27C5B803002D1723 /* SleepGloveApp.swift */; };
@@ -45,6 +47,8 @@
 		671CD28A27F4FC850005B27D /* StepTwoPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepTwoPrompt.swift; sourceTree = "<group>"; };
 		671CD28C27F508280005B27D /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		671CD28E27F50DA10005B27D /* RecordingDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingDataModel.swift; sourceTree = "<group>"; };
+		671CD29027F555710005B27D /* StepThreePrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepThreePrompt.swift; sourceTree = "<group>"; };
+		671CD29227F558040005B27D /* StepFourPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepFourPrompt.swift; sourceTree = "<group>"; };
 		673A05BE27F39BBA00C41612 /* StepOnePrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepOnePrompt.swift; sourceTree = "<group>"; };
 		673A05C027F39D4E00C41612 /* SleepRecording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRecording.swift; sourceTree = "<group>"; };
 		6743783827C5B803002D1723 /* SleepGlove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepGlove.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,6 +120,8 @@
 				671CD28E27F50DA10005B27D /* RecordingDataModel.swift */,
 				673A05BE27F39BBA00C41612 /* StepOnePrompt.swift */,
 				671CD28A27F4FC850005B27D /* StepTwoPrompt.swift */,
+				671CD29027F555710005B27D /* StepThreePrompt.swift */,
+				671CD29227F558040005B27D /* StepFourPrompt.swift */,
 				673A05C027F39D4E00C41612 /* SleepRecording.swift */,
 				6743783D27C5B803002D1723 /* ContentView.swift */,
 				6743783F27C5B805002D1723 /* Assets.xcassets */,
@@ -286,7 +292,9 @@
 				6743783E27C5B803002D1723 /* ContentView.swift in Sources */,
 				6751129827CED73A003BE27F /* BLEManager.swift in Sources */,
 				673A05BF27F39BBA00C41612 /* StepOnePrompt.swift in Sources */,
+				671CD29327F558040005B27D /* StepFourPrompt.swift in Sources */,
 				6743786627C5EB5D002D1723 /* BluetoothDiscoveryView.swift in Sources */,
+				671CD29127F555710005B27D /* StepThreePrompt.swift in Sources */,
 				6743783C27C5B803002D1723 /* SleepGloveApp.swift in Sources */,
 				6751129A27D01039003BE27F /* CalibrationStart.swift in Sources */,
 				671CD28B27F4FC850005B27D /* StepTwoPrompt.swift in Sources */,
