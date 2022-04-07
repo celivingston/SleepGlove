@@ -10,6 +10,7 @@ struct StepTwoPrompt: View {
     @State private var time: String = ""
     @State private var willMoveToNextScreen = false
     @ObservedObject var sleepRecording: SleepRecording
+    @ObservedObject var bleManager: BLEManager
     
     var body: some View {
         VStack {
@@ -39,13 +40,13 @@ struct StepTwoPrompt: View {
                 .shadow(radius: 5.0)
                 .disabled(time=="")
                 .buttonStyle(MyButtonStyle())
-        }.textFieldStyle(.roundedBorder).navigate(to: StepThreePrompt(audioRecorder: AudioRecorder(), sleepRecording: sleepRecording), when: $willMoveToNextScreen)
+        }.textFieldStyle(.roundedBorder).navigate(to: StepThreePrompt(sleepRecording: sleepRecording, bleManager: bleManager), when: $willMoveToNextScreen)
     }
     
 }
 
 struct StepTwoPrompt_Previews: PreviewProvider {
     static var previews: some View {
-        StepTwoPrompt(sleepRecording: SleepRecording())
+        StepTwoPrompt(sleepRecording: SleepRecording(), bleManager: BLEManager())
     }
 }

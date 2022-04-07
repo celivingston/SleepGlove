@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct StepThreePrompt: View {
-    @ObservedObject var audioRecorder: AudioRecorder
+    @ObservedObject var audioRecorder = AudioRecorder()
+    @State private var willMoveToNextScreen = false
     @State private var hasRecorded = false
     @ObservedObject var sleepRecording: SleepRecording
+    @ObservedObject var bleManager: BLEManager
     
     var body: some View {
         VStack {
@@ -32,7 +34,7 @@ struct StepThreePrompt: View {
                 .background(Color.gray.opacity(0.25))
                 .cornerRadius(10)
             if audioRecorder.recording == false {
-                Button(action: {self.audioRecorder.startRecording()}) {
+                Button(action: {self.audioRecorder.startRecording(pathComponent: "ToWakeRecordings")}) {
                     Image(systemName: "circle.fill")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -44,7 +46,7 @@ struct StepThreePrompt: View {
                 }.padding([.top, .bottom], 30)
             } else {
                 Button(action: {
-                    sleepRecording.toWakeRecording =  self.audioRecorder.stopRecording()
+                    sleepRecording.addToWakeRecording(record: self.audioRecorder.stopRecording())
                     self.hasRecorded = true
                     
                 }) {
@@ -66,6 +68,7 @@ struct StepThreePrompt: View {
                 if audioRecorder.recording == true {
                     audioRecorder.stopRecording()
                 }
+                self.willMoveToNextScreen = true
             }) {
                 Text("Next")
                     .fontWeight(.bold)
@@ -77,12 +80,12 @@ struct StepThreePrompt: View {
                 .shadow(radius: 5.0)
                 .disabled(!hasRecorded)
                 .buttonStyle(MyButtonStyle())
-        }
+        }.navigate(to: StepFourPrompt(audioRecorder: audioRecorder, sleepRecording: sleepRecording, bleManager: bleManager), when: $willMoveToNextScreen)
     }
 }
 
 struct StepThreePrompt_Previews: PreviewProvider {
     static var previews: some View {
-        StepThreePrompt(audioRecorder: AudioRecorder(), sleepRecording: SleepRecording())
+        StepThreePrompt(audioRecorder: AudioRecorder(), sleepRecording: SleepRecording(), bleManager: BLEManager())
     }
 }

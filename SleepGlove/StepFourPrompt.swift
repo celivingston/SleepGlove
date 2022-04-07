@@ -9,6 +9,9 @@ import SwiftUI
 
 struct StepFourPrompt: View {
     @ObservedObject var audioRecorder: AudioRecorder
+    @ObservedObject var sleepRecording: SleepRecording
+    @ObservedObject var bleManager: BLEManager
+    @State private var willMoveToNextScreen = false
     @State private var hasRecorded = false
     var body: some View {
         VStack {
@@ -30,7 +33,7 @@ struct StepFourPrompt: View {
                 .background(Color.gray.opacity(0.25))
                 .cornerRadius(10)
             if audioRecorder.recording == false {
-                Button(action: {self.audioRecorder.startRecording()}) {
+                Button(action: {self.audioRecorder.startRecording(pathComponent: "ToSleepRecordings")}) {
                     Image(systemName: "circle.fill")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -42,7 +45,7 @@ struct StepFourPrompt: View {
                 }.padding([.top, .bottom], 30)
             } else {
                 Button(action: {
-                    self.audioRecorder.stopRecording()
+                    sleepRecording.addToSleepRecording(record: self.audioRecorder.stopRecording())
                     self.hasRecorded = true
                 }) {
                     Image(systemName: "stop.fill")
@@ -61,8 +64,9 @@ struct StepFourPrompt: View {
                 .foregroundColor(hasRecorded ? Color.primary : Color.clear)
             Button(action: {
                 if audioRecorder.recording == true {
-                    audioRecorder.stopRecording()
+                    sleepRecording.toSleepRecording = audioRecorder.stopRecording()
                 }
+                self.willMoveToNextScreen = true
             }) {
                 Text("Next")
                     .fontWeight(.bold)
@@ -74,12 +78,12 @@ struct StepFourPrompt: View {
                 .padding()
                 .disabled(!hasRecorded)
                 .buttonStyle(MyButtonStyle())
-        }
+        }.navigate(to: StepFivePrompt(audioRecorder: audioRecorder, sleepRecording: sleepRecording, bleManager: bleManager), when: $willMoveToNextScreen)
     }
 }
 
 struct StepFourPrompt_Previews: PreviewProvider {
     static var previews: some View {
-        StepFourPrompt(audioRecorder: AudioRecorder())
+        StepFourPrompt(audioRecorder: AudioRecorder(), sleepRecording: SleepRecording(), bleManager: BLEManager())
     }
 }

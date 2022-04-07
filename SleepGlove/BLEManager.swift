@@ -29,10 +29,13 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     var myCentral: CBCentralManager!
     @Published var isScanning = false
     @Published var isSwitchedOn = false
+    @Published var isConnected = false
+    @Published var callibrated = false
+    @Published var incomingMessage = ""
+    @Published var wakeUp = false
     var peripherals = [Peripheral]()
     var myPeripheal:CBPeripheral?
     var myCharacteristic:CBCharacteristic?
-    @Published var isConnected = false
     
     override init() {
         super.init()
@@ -66,12 +69,6 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             myCentral.stopScan()
         }
     }
-    
-    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-        guard let characteristics = service.characteristics else { return }
-        myCharacteristic = characteristics[0]
-
-    }
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
 
@@ -84,18 +81,52 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
                     // STEP 9: look for characteristics of interest
                     // within services of interest
                 peripheral.discoverCharacteristics(nil, for: service)
-                print(myPeripheal?.state ?? "no value")
             }
 
         }
 
     }
     
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+        guard let characteristics = service.characteristics else { return }
+        print(characteristics)
+        myCharacteristic = characteristics[0]
+        peripheral.readValue(for: myCharacteristic!)
+        peripheral.setNotifyValue(true, for: myCharacteristic!)
+//        for characteristic in service.characteristics! {
+//            print(characteristic)
+//            peripheral.readValue(for: characteristic)
+//            peripheral.setNotifyValue(true, for: characteristic)
+//        }
+    }
+    
+    
+    
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         peripheral.discoverServices([BLE_CBUUID])
         print("Connected to " +  peripheral.name!)
         DispatchQueue.main.async {
             self.isConnected = true
+        }
+        
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+        let val = characteristic.value!
+        print("Recieving value... ")
+        print(String(decoding: val, as: UTF8.self))
+        DispatchQueue.main.async {
+            self.incomingMessage = String(decoding: val, as: UTF8.self)
+        }
+        if String(decoding: val, as: UTF8.self) == "finishedCallibration" {
+            print("Has message finished callibration")
+            DispatchQueue.main.async {
+                self.callibrated = true
+            }
+        } else if String(decoding: val, as: UTF8.self) == "wakeUp" {
+            DispatchQueue.main.async {
+                self.wakeUp = true
+            }
         }
         
     }
@@ -114,11 +145,17 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     
     func sendText(text: String) {
         print("Sending text...")
-        print(myPeripheal?.name ?? "no name of peripheal")
-        print(myCharacteristic ?? "no characteristic")
         if (myPeripheal != nil && myCharacteristic != nil) {
             let data = text.data(using: .utf8)
             myPeripheal!.writeValue(data!,  for: myCharacteristic!, type: CBCharacteristicWriteType.withResponse)
         }
     }
+//    func readText() {
+//        print(myCharacteristic?.service ?? "no service value")
+//        if (myPeripheal != nil && myCharacteristic != nil) {
+//            myPeripheal!.readValue(for: myCharacteristic!)
+//            let str = String(decoding: (myCharacteristic?.value)!, as: UTF8.self)
+//            print(str)
+//        }
+//    }
 }

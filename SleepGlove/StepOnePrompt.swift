@@ -17,8 +17,10 @@ struct StepOnePrompt: View {
     @State private var willMoveToNextScreen = false
     @FocusState private var focusedField: Field?
     @ObservedObject var sleepRecording = SleepRecording()
-    init() {
+    @ObservedObject var bleManager: BLEManager
+    init(bleManager: BLEManager) {
             UITextView.appearance().backgroundColor = .clear
+        self.bleManager = bleManager
     }
     
     var body: some View {
@@ -69,7 +71,7 @@ struct StepOnePrompt: View {
                 .buttonStyle(MyButtonStyle())
                 
             
-        }.navigate(to: StepTwoPrompt(sleepRecording: sleepRecording), when: $willMoveToNextScreen)
+        }.navigate(to: StepTwoPrompt(sleepRecording: sleepRecording, bleManager: bleManager), when: $willMoveToNextScreen)
     }
 }
 
@@ -81,6 +83,6 @@ extension UIApplication {
 
 struct StepOnePrompt_Previews: PreviewProvider {
     static var previews: some View {
-        StepOnePrompt()
+        StepOnePrompt(bleManager: BLEManager())
     }
 }

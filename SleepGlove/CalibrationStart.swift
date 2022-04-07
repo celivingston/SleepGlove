@@ -37,7 +37,7 @@ struct CalibrationStart: View {
                     .shadow(radius: 5.0)
                     .cornerRadius(30)
             }.padding()
-        }.navigate(to: StepOnePrompt(), when: $willMoveToNextScreen)
+        }.navigate(to: StepOnePrompt(bleManager: bleManager), when: $willMoveToNextScreen)
         
     }
 }
