@@ -65,7 +65,6 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             myPeripheal = peripheral
             myPeripheal?.delegate = self
             myCentral.connect(peripheral, options: nil)
-            print("connected to BLETest")
             myCentral.stopScan()
         }
     }
@@ -119,7 +118,6 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             self.incomingMessage = String(decoding: val, as: UTF8.self)
         }
         if String(decoding: val, as: UTF8.self) == "finishedCallibration" {
-            print("Has message finished callibration")
             DispatchQueue.main.async {
                 self.callibrated = true
             }

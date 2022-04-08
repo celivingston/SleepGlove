@@ -10,11 +10,11 @@ import SwiftUI
 struct ContentView: View {
     @State private var connecting = false
     @State private var willMoveToNextScreen = false
-    @State private var connectingLabel = "Connect to my Sleep Glove"
+    @State private var connectingLabel = "Connect to Sleep Glove"
     
     var body: some View {
         VStack {
-            Text("Hello, Sleep Glove user!")
+            Text("Hello!")
                 .font(.system(size: 30, weight: .bold, design: .default))
                 .padding([.top], 30)
             Text("Are you ready to connect your glove?")
@@ -27,7 +27,7 @@ struct ContentView: View {
                     .fontWeight(.bold)
                     .padding(20)
                     .foregroundColor(.white)
-                    .background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.blue]), startPoint: .leading, endPoint: .trailing))
+                    .background(LinearGradient(gradient: Gradient(colors: [Color.purple, Color.blue]), startPoint: .leading, endPoint: .trailing))
                     .cornerRadius(30)
                     .shadow(radius: 5.0)
             }

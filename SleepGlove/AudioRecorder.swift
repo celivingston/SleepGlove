@@ -133,11 +133,18 @@ class AudioRecorder: NSObject, ObservableObject {
     }
     
     func playRecording(record: Recording) {
-        self.isPlaying = true;
+        let session = AVAudioSession.sharedInstance()
+        do {
+            try session.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
+        } catch let error as NSError {
+            print("audioSession error: \(error.localizedDescription)")
+        }
+        
         do {
             self.audioPlayer = try AVAudioPlayer(contentsOf: record.fileURL)
             self.audioPlayer.prepareToPlay()
             self.audioPlayer.play()
+            self.isPlaying = true;
         } catch {
             print("Error in playing file")
         }

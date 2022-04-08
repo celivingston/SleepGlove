@@ -10,6 +10,7 @@
 		6713445627F774300091EF95 /* StepFivePrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6713445527F774300091EF95 /* StepFivePrompt.swift */; };
 		6713445827F77B5E0091EF95 /* RecordingsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6713445727F77B5E0091EF95 /* RecordingsList.swift */; };
 		6713445A27FE38710091EF95 /* ToSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6713445927FE386F0091EF95 /* ToSleep.swift */; };
+		6713445C2800C9AB0091EF95 /* PromptProgression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6713445B2800C9AB0091EF95 /* PromptProgression.swift */; };
 		671CD28B27F4FC850005B27D /* StepTwoPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671CD28A27F4FC850005B27D /* StepTwoPrompt.swift */; };
 		671CD28D27F508280005B27D /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671CD28C27F508280005B27D /* AudioRecorder.swift */; };
 		671CD28F27F50DA10005B27D /* RecordingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671CD28E27F50DA10005B27D /* RecordingDataModel.swift */; };
@@ -50,6 +51,7 @@
 		6713445527F774300091EF95 /* StepFivePrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepFivePrompt.swift; sourceTree = "<group>"; };
 		6713445727F77B5E0091EF95 /* RecordingsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsList.swift; sourceTree = "<group>"; };
 		6713445927FE386F0091EF95 /* ToSleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToSleep.swift; sourceTree = "<group>"; };
+		6713445B2800C9AB0091EF95 /* PromptProgression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptProgression.swift; sourceTree = "<group>"; };
 		671CD28A27F4FC850005B27D /* StepTwoPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepTwoPrompt.swift; sourceTree = "<group>"; };
 		671CD28C27F508280005B27D /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		671CD28E27F50DA10005B27D /* RecordingDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingDataModel.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				671CD29027F555710005B27D /* StepThreePrompt.swift */,
 				671CD29227F558040005B27D /* StepFourPrompt.swift */,
 				6713445527F774300091EF95 /* StepFivePrompt.swift */,
+				6713445B2800C9AB0091EF95 /* PromptProgression.swift */,
 				6713445927FE386F0091EF95 /* ToSleep.swift */,
 				673A05C027F39D4E00C41612 /* SleepRecording.swift */,
 				6743783D27C5B803002D1723 /* ContentView.swift */,
@@ -311,6 +314,7 @@
 				6751129A27D01039003BE27F /* CalibrationStart.swift in Sources */,
 				671CD28B27F4FC850005B27D /* StepTwoPrompt.swift in Sources */,
 				673A05C127F39D4E00C41612 /* SleepRecording.swift in Sources */,
+				6713445C2800C9AB0091EF95 /* PromptProgression.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +485,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -512,6 +517,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
