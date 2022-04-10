@@ -79,6 +79,7 @@ struct StepThreePrompt: View {
                 .padding()
                 .disabled(!hasRecorded)
                 .buttonStyle(MyButtonStyle())
+            PromptProgression(promptNumber: 2)
         }.navigate(to: StepFourPrompt(audioRecorder: audioRecorder, sleepRecording: sleepRecording, bleManager: bleManager), when: $willMoveToNextScreen)
     }
 }

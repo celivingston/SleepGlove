@@ -23,6 +23,7 @@ struct StepFivePrompt: View {
                 .padding()
                 .font(.system(size: 20, weight: .regular))
                 .frame(maxWidth: .infinity, alignment: .leading)
+            Spacer()
             if bleManager.incomingMessage == "finishedCallibration" {
                 Text("The device is callibrated! When you are ready to sleep, press the button below.")
                     .padding()
@@ -59,7 +60,7 @@ struct StepFivePrompt: View {
                     .buttonStyle(MyButtonStyle())
                     .shadow(radius: 5.0)
             }
-            
+            PromptProgression(promptNumber: 4)
         }.navigate(to: ToSleep(audioRecorder: audioRecorder, sleepRecording: sleepRecording, bleManager: bleManager), when: $willMoveToNextScreen)
     }
 }

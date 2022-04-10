@@ -80,6 +80,7 @@ struct StepFourPrompt: View {
                             .shadow(radius: 5.0)
                             .disabled(!hasRecorded || audioRecorder.recording)
                             .buttonStyle(MyButtonStyle())
+            PromptProgression(promptNumber: 3)
         }.navigate(to: StepFivePrompt(audioRecorder: audioRecorder, sleepRecording: sleepRecording, bleManager: bleManager), when: $willMoveToNextScreen)
     }
 }

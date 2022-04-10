@@ -11,11 +11,26 @@ struct PromptProgression: View {
     var promptNumber : Int
     
     var body: some View {
-        HStack {
-            Text("1")
-            Text("2")
-            Text("3")
-        }
+        VStack {
+            Divider()
+            HStack {
+                Circle()
+                    .fill(promptNumber == 1 ? Color.purple : Color.blue)
+                    .frame(width: 25, height: 25)
+                Spacer()
+                Circle()
+                    .fill(promptNumber == 2 ? Color.purple : Color.blue)
+                    .frame(width: 25, height: 25)
+                Spacer()
+                Circle()
+                    .fill(promptNumber == 3 ? Color.purple : Color.blue)
+                    .frame(width: 25, height: 25)
+                Spacer()
+                Circle()
+                    .fill(promptNumber == 4 ? Color.purple : Color.blue)
+                    .frame(width: 25, height: 25)
+            }
+        }.padding()
     }
 }
 

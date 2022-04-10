@@ -70,8 +70,8 @@ struct StepOnePrompt: View {
                 .disabled(dreamFocus == placeholder || dreamFocus == "")
                 .buttonStyle(MyButtonStyle())
                 
-            
-        }.navigate(to: StepTwoPrompt(sleepRecording: sleepRecording, bleManager: bleManager), when: $willMoveToNextScreen)
+            PromptProgression(promptNumber: 1)
+        }.navigate(to: StepThreePrompt(sleepRecording: sleepRecording, bleManager: bleManager), when: $willMoveToNextScreen)
     }
 }
 

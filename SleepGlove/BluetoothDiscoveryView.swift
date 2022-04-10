@@ -161,7 +161,7 @@ private extension MyButtonStyle {
         .background(RoundedRectangle(cornerRadius: 30)
           // change the background color based on if it's disabled
             //.fill(isEnabled ? Color.blue : Color.gray)
-                        .fill(isEnabled ? LinearGradient(gradient: Gradient(colors: [Color.purple, Color.blue]), startPoint: .leading, endPoint: .trailing) : LinearGradient(gradient: Gradient(colors: [Color.yellow, Color.gray]), startPoint: .leading, endPoint: .trailing))
+                        .fill(isEnabled ? LinearGradient(gradient: Gradient(colors: [Color.purple, Color.blue]), startPoint: .leading, endPoint: .trailing) : LinearGradient(gradient: Gradient(colors: [Color.gray, Color.gray]), startPoint: .leading, endPoint: .trailing))
         )
         // make the button a bit more translucent when pressed
         .opacity(configuration.isPressed ? 0.8 : 1.0)
