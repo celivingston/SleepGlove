@@ -15,10 +15,14 @@ struct ToSleep: View {
     var body: some View {
         VStack {
             Text("Make sure your volume is up.")
-            Image(systemName: "speaker.2.fill")
-            if bleManager.incomingMessage == "wakeUp" {
+            if bleManager.incomingMessage == "sleepMessage" {
+                PopUpAudioPlayer(bleManager: self.bleManager, audioRecorder: self.audioRecorder)
                 //print("wakeUp")
                 //audioRecorder.playRecording(record: sleepRecording.toWakeRecording)
+            }
+            if bleManager.incomingMessage == "wakeUp" {
+                PopUpAudioPlayer(bleManager: self.bleManager, audioRecorder: self.audioRecorder)
+                
             }
         }
         

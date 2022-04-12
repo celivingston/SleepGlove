@@ -14,21 +14,37 @@ struct PromptProgression: View {
         VStack {
             Divider()
             HStack {
-                Circle()
-                    .fill(promptNumber == 1 ? Color.purple : Color.blue)
-                    .frame(width: 25, height: 25)
+                ZStack {
+                    Circle()
+                        .fill(promptNumber == 1 ? Color.purple : Color.blue)
+                        .frame(width: 25, height: 25)
+                    Text("1")
+                }
+                
                 Spacer()
-                Circle()
-                    .fill(promptNumber == 2 ? Color.purple : Color.blue)
-                    .frame(width: 25, height: 25)
+                ZStack {
+                    Circle()
+                        .fill(promptNumber == 2 ? Color.purple : Color.blue)
+                        .frame(width: 25, height: 25)
+                    Text("2")
+                }
+                
                 Spacer()
-                Circle()
-                    .fill(promptNumber == 3 ? Color.purple : Color.blue)
-                    .frame(width: 25, height: 25)
+                ZStack {
+                    Circle()
+                        .fill(promptNumber == 3 ? Color.purple : Color.blue)
+                        .frame(width: 25, height: 25)
+                    Text("3")
+                }
+                
                 Spacer()
-                Circle()
-                    .fill(promptNumber == 4 ? Color.purple : Color.blue)
-                    .frame(width: 25, height: 25)
+                ZStack {
+                    Circle()
+                        .fill(promptNumber == 4 ? Color.purple : Color.blue)
+                        .frame(width: 25, height: 25)
+                    Text("4")
+                }
+                
             }
         }.padding()
     }

@@ -125,6 +125,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             DispatchQueue.main.async {
                 self.wakeUp = true
             }
+            
         }
         
     }

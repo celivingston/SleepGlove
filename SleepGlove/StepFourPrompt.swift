@@ -60,8 +60,18 @@ struct StepFourPrompt: View {
                                     .shadow(radius: 10)
                             }.padding([.top, .bottom], 30)
                         }
-                        Spacer()
-                        Text("If there are issues that occurred during your recording, please re-record by tapping the button again. ")
+                        Button(action: {audioRecorder.playRecording(record: self.audioRecorder.getToWakeRecording())}) {
+                                ZStack {
+                                        Circle()
+                                            .frame(width: 60, height: 60)
+                                            .foregroundColor(hasRecorded && !audioRecorder.recording ? Color.gray : Color.clear)
+                                        Image(systemName: "play.circle")
+                                            .resizable()
+                                            .foregroundColor(hasRecorded && !audioRecorder.recording ? Color.blue : Color.clear)
+                                            .frame(width: 50, height: 50)
+                                }
+                        }.disabled(!(hasRecorded && !audioRecorder.recording))
+                        Text("Tap the play button to listen. If there are issues that occurred during your recording, please re-record. ")
                             .font(.system(size: 15, weight: .regular))
                             .foregroundColor(hasRecorded ? Color.primary : Color.clear)
                         Button(action: {
@@ -80,7 +90,7 @@ struct StepFourPrompt: View {
                             .shadow(radius: 5.0)
                             .disabled(!hasRecorded || audioRecorder.recording)
                             .buttonStyle(MyButtonStyle())
-            PromptProgression(promptNumber: 3)
+                        PromptProgression(promptNumber: 3)
         }.navigate(to: StepFivePrompt(audioRecorder: audioRecorder, sleepRecording: sleepRecording, bleManager: bleManager), when: $willMoveToNextScreen)
     }
 }

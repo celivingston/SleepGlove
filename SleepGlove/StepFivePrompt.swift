@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct StepFivePrompt: View {
-    @State private var hasCallibrated = false
     @State private var willMoveToNextScreen = false
     @ObservedObject var audioRecorder: AudioRecorder
     @ObservedObject var sleepRecording: SleepRecording
@@ -16,52 +15,40 @@ struct StepFivePrompt: View {
     
     var body: some View {
         VStack {
-            Text("Time to callibrate the sleep measuring device.")
+            Text("Time to position the device for sleep!")
                 .font(.system(size: 30, weight: .bold))
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
                 .padding([.top], 30)
-            Text("With the wristband on, close your hand around the cylinder and relax for 30 seconds to get your baseline measurements.")
+            Text("Place the band on the front of your wrist, back of your wrist, or tip of your bicep. Make sure the band is fastened tightly. ")
+                .padding()
+                .font(.system(size: 20, weight: .regular))
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Text("The position of the wire is not important, but remember you will be sleeping with it. ")
+                .padding()
+                .font(.system(size: 20, weight: .regular))
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+            Text("Wrap your hand around the cylinder to cover the white square. Get comfortable with the positioning. We recommend lining your thumb up with the vertical white seam. ")
                 .padding()
                 .font(.system(size: 20, weight: .regular))
                 .frame(maxWidth: .infinity, alignment: .leading)
             Spacer()
-            if bleManager.incomingMessage == "finishedCallibration" {
-                Text("The device is callibrated! When you are ready to sleep, press the button below.")
-                    .padding()
-                    .font(.system(size: 15, weight: .regular))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                Button(action: {
-                    bleManager.sendText(text: "startSleep")
-                    audioRecorder.playRecording(record: audioRecorder.getToSleepRecording())
-                    self.willMoveToNextScreen = true;
-                }) {
-                    Text("Go to Sleep")
-                        .fontWeight(.bold)
-                        .padding(20)
-                        .foregroundColor(.white)
-                        .frame(width: 200)
-                }
-                    .padding()
-                    .disabled(!hasCallibrated)
-                    .buttonStyle(MyButtonStyle())
-                    .shadow(radius: 5.0)
-            } else {
-                Button(action: {
-                    self.bleManager.sendText(text: "startCalibration")
-                    self.hasCallibrated = true
-                }) {
-                    Text("Callibrate")
-                        .fontWeight(.bold)
-                        .padding(20)
-                        .foregroundColor(.white)
-                        .frame(width: 200)
-                }
-                    .padding()
-                    .disabled(hasCallibrated)
-                    .buttonStyle(MyButtonStyle())
-                    .shadow(radius: 5.0)
+            Button(action: {
+                self.bleManager.sendText(text: "startCalibration")
+                self.willMoveToNextScreen = true
+            }) {
+                Text("Ready!")
+                    .fontWeight(.bold)
+                    .padding(20)
+                    .foregroundColor(.white)
+                    .frame(width: 200)
             }
+                .padding()
+                .buttonStyle(MyButtonStyle())
+                .shadow(radius: 5.0)
             PromptProgression(promptNumber: 4)
-        }.navigate(to: ToSleep(audioRecorder: audioRecorder, sleepRecording: sleepRecording, bleManager: bleManager), when: $willMoveToNextScreen)
+        }.navigate(to: CalibrationStart(bleManager: bleManager, audioRecorder: audioRecorder, sleepRecording: sleepRecording), when: $willMoveToNextScreen)
     }
 }
 
